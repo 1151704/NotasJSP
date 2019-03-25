@@ -32,3 +32,19 @@ CREATE TABLE asignaturaNota (
 	porcentaje double NOT NULL,
 	FOREIGN KEY (idAsignatura) REFERENCES asignatura(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+INSERT INTO usuario (nombre, apellido, email, telefono, usuario, password) values ('Omar', 'Ramón', 'omar@gmail.com', '555-5555', 'root', 'root');
+
+INSERT INTO asignatura (nombre, profesor, creditos, promedioTotal, idUsuario) values ('Programación web', 'Carlos Angarita', 3, '0', 1);
+INSERT INTO asignatura (nombre, profesor, creditos, promedioTotal, idUsuario) values ('Análisis de algoritmos', 'Marco Adarme', 3, '0', 1);
+
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (1, 'Nota 1', 0, '23,3');
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (1, 'Nota 2', 0, '23,3');
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (1, 'Nota 3', 0, '23,3');
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (1, 'Nota 4', 0, '30');
+
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (2, 'Nota 1', 0, '23,3');
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (2, 'Nota 2', 0, '23,3');
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (2, 'Nota 3', 0, '23,3');
+INSERT INTO asignaturaNota (idAsignatura, nombre, nota, porcentaje) values (2, 'Nota 4', 0, '30');

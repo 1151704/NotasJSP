@@ -23,5 +23,5 @@
   <error-page>
     <error-code>503</error-code>
     <location>/general-error.jsp?error=503</location>
-  </error-page>  
+  </error-page>
 </web-app>

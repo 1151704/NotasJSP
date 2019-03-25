@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import conexion.Conexion;
 import dto.Asignatura;
 import dto.AsignaturaNota;
+import dto.Usuario;
 import facade.IAsignaturaDao;
 import facade.IAsignaturaNotaDao;
 
@@ -31,13 +32,13 @@ public class AsignaturaDao implements IAsignaturaDao {
 		try {
 			cnn = Conexion.getCnn();
 
-			ps = cnn.prepareStatement("SELECT * FROM asinatura where id = ?;");
+			ps = cnn.prepareStatement("SELECT * FROM asignatura where id = ?;");
 
 			ps.setLong(1, id);
 
 			rs = ps.executeQuery();
 
-			IAsignaturaNotaDao notasDao = new AsignaturaNotaDao();
+			IAsignaturaNotaDao notasDao = new AsignaturaNotaDao();			
 
 			while (rs.next()) {
 				asignatura = new Asignatura();
@@ -46,6 +47,7 @@ public class AsignaturaDao implements IAsignaturaDao {
 				asignatura.setNombre(rs.getString("nombre"));
 				asignatura.setCreditos(rs.getInt("creditos"));
 				asignatura.setPromedioTotal(rs.getDouble("promedioTotal"));
+				asignatura.setUsuario(new Usuario(rs.getLong("idUsuario")));
 				asignatura.setNotas(notasDao.findNotaByAsignatura(asignatura.getId()));
 
 			}
@@ -197,7 +199,7 @@ public class AsignaturaDao implements IAsignaturaDao {
 		try {
 			cnn = Conexion.getCnn();
 
-			ps = cnn.prepareStatement("SELECT * FROM asinatura where idUsuario = ?");
+			ps = cnn.prepareStatement("SELECT * FROM asignatura where idUsuario = ?");
 
 			ps.setLong(1, idUsuario);
 
@@ -214,6 +216,7 @@ public class AsignaturaDao implements IAsignaturaDao {
 				asignatura.setNombre(rs.getString("nombre"));
 				asignatura.setCreditos(rs.getInt("creditos"));
 				asignatura.setPromedioTotal(rs.getDouble("promedioTotal"));
+				asignatura.setUsuario(new Usuario(rs.getLong("idUsuario")));
 				asignatura.setNotas(notasDao.findNotaByAsignatura(asignatura.getId()));
 
 				asignaturas.add(asignatura);

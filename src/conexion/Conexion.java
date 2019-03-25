@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class Conexion {
 
 	private static Connection cnn;
-	private static final String DB = "web_usuario";
+	private static final String DB = "web_notas";
 	private static final String USER = "root";
 	private static final String PASS = "";
 

@@ -112,7 +112,7 @@ public class AsignaturaNotaDao implements IAsignaturaNotaDao {
 		try {
 			cnn = Conexion.getCnn();
 
-			ps = cnn.prepareStatement("SELECT * FROM asinaturaNota where idAsignatura = ? order by nombre;");
+			ps = cnn.prepareStatement("SELECT * FROM asignaturaNota where idAsignatura = ? order by nombre;");
 
 			ps.setLong(1, id);
 

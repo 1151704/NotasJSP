@@ -13,8 +13,8 @@ import javax.servlet.http.HttpSession;
 import dto.Usuario;
 import servicio.Controlador;
 
-@WebServlet("/UsuarioRegistrar")
-public class UsuarioRegistrar extends HttpServlet {
+@WebServlet("/AsignaturaRegistrar")
+public class AsignaturaRegistrar extends HttpServlet {
 
 	private HttpSession session;
 	private PrintWriter out;
@@ -30,32 +30,23 @@ public class UsuarioRegistrar extends HttpServlet {
 		session = request.getSession();
 		Controlador controlador = (Controlador) session.getAttribute("controlador");
 
-		if (controlador == null) {
-			controlador = new Controlador();
-			session.setAttribute("controlador", controlador);
-		}
+		Usuario usuarioActual = (Usuario) session.getAttribute("usuarioActual");
 
-		String nombre = request.getParameter("nombre");
-		String apellido = request.getParameter("apellido");
-		String username = request.getParameter("username");
-		String email = request.getParameter("email");
-		String telefono = request.getParameter("telefono");
-		String password = request.getParameter("password");
+		if (usuarioActual != null) {
+			
+			String nombre = request.getParameter("nombre");
+			String profesor = request.getParameter("profesor");
+			int creditos = Integer.parseInt(request.getParameter("creditos"));
 
-		controlador.usuarioRegistrar(nombre, apellido, username, email, telefono, password);
+			controlador.asignaturaRegistrar(nombre, creditos, profesor, usuarioActual.getId());
 
-		Usuario usuario = controlador.usuarioPorUsuario(username);
-		if (usuario != null) {
-			session.setAttribute("usuarioActual", usuario);
-
-			out.write("{\"mensaje\": \"Bienvenido\", \"redirect\": \"inicio.jsp\" }");
+			out.write("{\"mensaje\": \"Hecho\", \"redirect\": \"asignaturas.jsp\" }");
 
 		} else {
-			session.setAttribute("usuarioActual", null);
-
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			out.write("{\"mensaje\": \"El registro no se completo, por favor intenta de nuevo\"}");
+			out.write("{\"mensaje\": \"Sin sessión\"}");
 		}
+
 	}
 
 	private static final long serialVersionUID = 1L;

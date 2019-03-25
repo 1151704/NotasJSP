@@ -12,11 +12,11 @@ function redirect(url) {
 }
 
 $(document).ready(function () {
-	formAjax();
-	
+	linkAjax();
+	formAjax();	
 });
 
-function formAjax(functions, conf) {
+function formAjax() {
     
 	$('form.form-ajax').off('submit');
     $('form.form-ajax').on('submit', function(e) {
@@ -36,14 +36,8 @@ function formAjax(functions, conf) {
             type: form.attr('method'),
             url: form.attr('action'),
             data: form.serialize(),
-            beforeSend: function() {
-              
-            },
-            complete: function(data) {
-
-            },
             success: function(response, status, xhr) { 
-
+            	
             	if (response.redirect) {
             		redirect(URL+response.redirect);
             	}
@@ -69,11 +63,54 @@ function formAjax(functions, conf) {
     			  });
             }
         });
-        respuestas.then(function() {
-            if (functions !== undefined) {
-                functions();
+    }
+}
+
+function linkAjax() {
+    
+	$('*.link-ajax').off('click');
+    $('*.link-ajax').on('click', function(e) {
+        e.preventDefault();
+        
+        enviarData(this.href);
+    });
+
+
+    function enviarData(ruta) {
+    	        
+    	let response_ajax = $("#response-ajax");
+
+    	let respuestas = $.ajax({
+        	
+            type: 'get',
+            url: ruta,
+            success: function(response, status, xhr) { 
+            	
+            	if (response.redirect) {
+            		redirect(URL+response.redirect);
+            	}
+            	
+            },
+            error: function(data) {
+            	           	
+            	let msgError = 'Error al enviar el formulario!';
+            	let tituloError = 'Oops...';
+            	
+            	if (data && data.responseJSON && data.responseJSON.mensaje) {
+            		msgError = data.responseJSON.mensaje;
+            	}
+
+            	if (data && data.responseJSON && data.responseJSON.titulo) {
+            		tituloError= data.responseJSON.titulo;
+            	}
+            	
+            	
+            	Swal.fire({
+            		  type: 'error',
+            		  title: tituloError,
+            		  text: msgError
+    			  });
             }
         });
-
     }
 }

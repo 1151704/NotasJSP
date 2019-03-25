@@ -36,7 +36,7 @@
 	<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top navbar-expand-lg" color-on-scroll="100">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="<%=ruta%>index.jsp">
+                <a class="navbar-brand" href="<%=ruta%>inicio.jsp">
                     Notas App</a>
             </div>
         </div>
