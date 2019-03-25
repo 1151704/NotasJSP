@@ -52,34 +52,42 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Notas</h4>
-                            <form class="form-ajax" action="AsignaturaNotaEditar" method="post" >
-                            	<input type="hidden" value="<%=asignatura.getId()%>" name="asignatura">
-	                            <div class="card-text">
-	                            	<% for (AsignaturaNota nota : asignatura.getNotas()) { %>
-	                            	<input type="hidden" value="<%=nota.getNota()%>" name="nota-old">
-	                            	<input type="hidden" value="<%=nota.getPorcentaje()%>" name="porcentaje-old">
-                                   	<input type="hidden" value="<%=nota.getNombre()%>" name="nombre">
-	                            	<!-- nota -->
-	                                <div class=" row align-items-end">
-	                                    <div class="col-md-6 "><%=nota.getNombre()%></div>
-	                                    <div class="col-md-4 ">	                                    	
-	                                        <input type="text" class="form-control form-control-sm text-center"
-	                                        	value="<%=(nota.getNota() > 0 ? nota.getNota() : "")%>" 
-	                                        	name="nota"
-	                                            placeholder="Nota">
-	                                    </div>
-	                                    <div class="col-md-2 ">
-	                                    	<input type="text" class="form-control form-control-sm text-center"
-	                                        	value="<%=(nota.getPorcentaje() > 0 ? nota.getPorcentaje() : "")%>" 
-	                                        	name="porcentaje"
-	                                            placeholder="Porc"></div>
-	                                </div>
-	                                <!-- end nota -->
-	                                <% } %>
-	                            </div>
-                                <button type="submit" class="btn btn-primary">Guardar cambios</button>	                            
-                            </form>
+                            <h4 class="card-title">
+                            Notas
+                            </h4>
+                            <div class="card-text">                            	
+	                            <button type="button" class="btn btn-info btn-outline-info" title="Promedio total">
+	                            	 Promedio total <span class="badge badge-default"><%=asignatura.getPromedioTotal()%></span>
+	                            </button>
+                            
+	                            <form class="form-ajax" action="AsignaturaNotaEditar" method="post" >
+	                            	<input type="hidden" value="<%=asignatura.getId()%>" name="asignatura">
+		                            <div class="card-text">
+		                            	<% for (AsignaturaNota nota : asignatura.getNotas()) { %>
+		                            	<input type="hidden" value="<%=nota.getNota()%>" name="nota-old">
+		                            	<input type="hidden" value="<%=nota.getPorcentaje()%>" name="porcentaje-old">
+	                                   	<input type="hidden" value="<%=nota.getNombre()%>" name="nombre">
+		                            	<!-- nota -->
+		                                <div class=" row align-items-end">
+		                                    <div class="col-md-6 "><%=nota.getNombre()%></div>
+		                                    <div class="col-md-4 ">	                                    	
+		                                        <input type="text" class="form-control form-control-sm text-center"
+		                                        	value="<%=(nota.getNota() > 0 ? nota.getNota() : "")%>" 
+		                                        	name="nota"
+		                                            placeholder="Nota">
+		                                    </div>
+		                                    <div class="col-md-2 ">
+		                                    	<input type="text" class="form-control form-control-sm text-center"
+		                                        	value="<%=(nota.getPorcentaje() > 0 ? nota.getPorcentaje() : "")%>" 
+		                                        	name="porcentaje"
+		                                            placeholder="Porc"></div>
+		                                </div>
+		                                <!-- end nota -->
+		                                <% } %>
+		                            </div>
+	                                <button type="submit" class="btn btn-primary">Guardar cambios</button>	                            
+	                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

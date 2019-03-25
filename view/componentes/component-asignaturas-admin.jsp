@@ -30,6 +30,9 @@
 	                    </h4>
 	                    <!-- notas asignatura -->
 	                    <div class="card-body">
+	                    	<button type="button" class="btn btn-info btn-outline-info" title="Promedio total">
+                            	 Promedio total <span class="badge badge-default"><%=asignatura.getPromedioTotal()%></span>
+                            </button>
 	                    	<% for (AsignaturaNota nota : asignatura.getNotas()) { %>
 	                        <div class=" row align-items-end">
 	                            <div class="col-md-8 "><%=nota.getNombre()%></div>
