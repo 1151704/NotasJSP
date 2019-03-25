@@ -20,7 +20,7 @@
         </div>
     </div>
     
-    <jsp:include page="include/component-asignaturas-admin.jsp" flush="true" />
+    <div id="component-asignaturas-admin"></div>
     
     <jsp:include page="include/modal-add-asignatura.jsp" flush="true" />    
     

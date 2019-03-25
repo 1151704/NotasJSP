@@ -41,7 +41,12 @@ public class AsignaturaEliminar extends HttpServlet {
 			if (asignatura != null && asignatura.getUsuario() != null && asignatura.getUsuario().equals(usuarioActual)) {
 
 				controlador.asignaturaEliminar(id);
-				out.write("{\"mensaje\": \"Hecho\", \"redirect\": \"asignaturas.jsp\" }");
+				out.write("{"
+						+ "\"mensaje\": \"Hecho\","
+						+ "\"execute\": {"
+						+ "\"funcion\": \"listadoAsignaturas\""
+						+ "}}");
+				
 			} else {				
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 				out.write("{\"mensaje\": \"No tienes permisos para eliminar esta asignatura\", \"redirect\": \"asignaturas.jsp\"}");

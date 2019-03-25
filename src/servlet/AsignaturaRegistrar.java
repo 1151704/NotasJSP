@@ -40,7 +40,11 @@ public class AsignaturaRegistrar extends HttpServlet {
 
 			controlador.asignaturaRegistrar(nombre, creditos, profesor, usuarioActual.getId());
 
-			out.write("{\"mensaje\": \"Hecho\", \"redirect\": \"asignaturas.jsp\" }");
+			out.write("{"
+					+ "\"mensaje\": \"Hecho\","
+					+ "\"execute\": {"
+					+ "\"funcion\": \"listadoAsignaturas\""
+					+ "}}");
 
 		} else {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);

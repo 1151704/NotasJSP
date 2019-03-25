@@ -20,5 +20,5 @@
 <!-- Control Center for Material Kit: parallax effects, scripts for the example pages etc -->
 <script src="<%=ruta%>assets/js/material-kit.js?v=2.0.5"
 	type="text/javascript"></script>
-<script src="<%=ruta%>resource/js/sweetalert2.all.min.js"></script>
+<script src="<%=ruta%>resource/js/sweetalert2.all.js"></script>
 <script src="<%=ruta%>resource/js/script.js"></script>
