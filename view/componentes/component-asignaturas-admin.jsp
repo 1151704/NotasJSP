@@ -32,11 +32,8 @@
 	                    <div class="card-body">
 	                    	<% for (AsignaturaNota nota : asignatura.getNotas()) { %>
 	                        <div class=" row align-items-end">
-	                            <div class="col-md-6 "><%=nota.getNombre()%></div>
-	                            <div class="col-md-4 ">
-	                                <input type="email" class="form-control form-control-sm text-center"
-	                                    placeholder="Nota">
-	                            </div>
+	                            <div class="col-md-8 "><%=nota.getNombre()%></div>
+	                            <div class="col-md-2 text-center"><%=nota.getNota()%></div>
 	                            <div class="col-md-2 text-right "><%=nota.getPorcentaje()%> %</div>
 	                        </div>
 	                        <%} %>

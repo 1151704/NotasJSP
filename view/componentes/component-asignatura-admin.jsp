@@ -8,7 +8,7 @@
 	}
 %>
 <% Asignatura asignatura = controlador.asignaturaPorId(id); %>
-<% if (asignatura != null) { %>
+<% if (asignatura != null && asignatura.getUsuario() != null && asignatura.getUsuario().equals(usuarioActual)) { %>
 <div class="main main-raised">
     <div class="container pt-5">
         <div class="about-description">
@@ -53,18 +53,33 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Notas</h4>
-                            <div class="card-text">
-                            	<!-- nota -->
-                                <div class=" row align-items-end">
-                                    <div class="col-md-6 ">Nota 1</div>
-                                    <div class="col-md-4 ">
-                                        <input type="email" class="form-control form-control-sm text-center"
-                                            placeholder="Nota">
-                                    </div>
-                                    <div class="col-md-2 text-right ">23.3 %</div>
-                                </div>
-                                <!-- end nota -->
-                            </div>
+                            <form class="form-ajax" action="AsignaturaNotaEditar" method="post" >
+                            	<input type="hidden" value="<%=asignatura.getId()%>" name="asignatura">
+	                            <div class="card-text">
+	                            	<% for (AsignaturaNota nota : asignatura.getNotas()) { %>
+	                            	<input type="hidden" value="<%=nota.getNota()%>" name="nota-old">
+	                            	<input type="hidden" value="<%=nota.getPorcentaje()%>" name="porcentaje-old">
+                                   	<input type="hidden" value="<%=nota.getNombre()%>" name="nombre">
+	                            	<!-- nota -->
+	                                <div class=" row align-items-end">
+	                                    <div class="col-md-6 "><%=nota.getNombre()%></div>
+	                                    <div class="col-md-4 ">	                                    	
+	                                        <input type="text" class="form-control form-control-sm text-center"
+	                                        	value="<%=(nota.getNota() > 0 ? nota.getNota() : "")%>" 
+	                                        	name="nota"
+	                                            placeholder="Nota">
+	                                    </div>
+	                                    <div class="col-md-2 ">
+	                                    	<input type="text" class="form-control form-control-sm text-center"
+	                                        	value="<%=(nota.getPorcentaje() > 0 ? nota.getPorcentaje() : "")%>" 
+	                                        	name="porcentaje"
+	                                            placeholder="Porc"></div>
+	                                </div>
+	                                <!-- end nota -->
+	                                <% } %>
+	                            </div>
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>	                            
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -73,4 +88,24 @@
     </div>
 </div>
 <% } else { %>
+<div class="main main-raised">
+    <div class="container pt-5">
+        <div class="about-description">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                            	Error
+                            </h4>
+                            <div class="card-text">
+                            	La asignatura puede que no exista o no tengas permisos para ingresar aquí
+                            </div>
+                        </div>
+                   	</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <% } %>

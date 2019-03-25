@@ -61,11 +61,12 @@ public class AsignaturaNotaDao implements IAsignaturaNotaDao {
 			cnn = Conexion.getCnn();
 
 			ps = cnn.prepareStatement(
-					"UPDATE asignaturaNota SET nota = ?, porcentaje = ? WHERE idAsignatura = ?");
+					"UPDATE asignaturaNota SET nota = ?, porcentaje = ? WHERE idAsignatura = ? and nombre = ?");
 
 			ps.setDouble(1, o.getNota());
 			ps.setDouble(2, o.getPorcentaje());
 			ps.setLong(3, o.getAsignatura().getId());
+			ps.setString(4, o.getNombre());
 
 			if (ps.executeUpdate() > 0) {
 				// return (true);
