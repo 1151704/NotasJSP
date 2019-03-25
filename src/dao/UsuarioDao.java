@@ -40,6 +40,7 @@ public class UsuarioDao implements IUsuarioDao {
 				usuario.setEmail(rs.getString("email"));
 				usuario.setTelefono(rs.getString("telefono"));
 				usuario.setUsuario(rs.getString("usuario"));
+				usuario.setPassword(rs.getString("password"));
 
 			}
 		} catch (SQLException ex) {
@@ -74,6 +75,7 @@ public class UsuarioDao implements IUsuarioDao {
 				usuario.setEmail(rs.getString("email"));
 				usuario.setTelefono(rs.getString("telefono"));
 				usuario.setUsuario(rs.getString("usuario"));
+				usuario.setPassword(rs.getString("password"));
 
 			}
 		} catch (SQLException ex) {
@@ -108,6 +110,7 @@ public class UsuarioDao implements IUsuarioDao {
 				usuario.setEmail(rs.getString("email"));
 				usuario.setTelefono(rs.getString("telefono"));
 				usuario.setUsuario(rs.getString("usuario"));
+				usuario.setPassword(rs.getString("password"));
 
 				usuarios.add(usuario);
 
@@ -145,6 +148,7 @@ public class UsuarioDao implements IUsuarioDao {
 				usuario.setEmail(rs.getString("email"));
 				usuario.setTelefono(rs.getString("telefono"));
 				usuario.setUsuario(rs.getString("usuario"));
+				usuario.setPassword(rs.getString("password"));
 
 			}
 		} catch (SQLException ex) {

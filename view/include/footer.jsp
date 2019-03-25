@@ -2,11 +2,11 @@
 	<div class="container">
 		<nav class="float-left">
 			<div class="social text-center">
-				<a href="#" class="btn btn-just-icon btn-round btn-twitter"> <i
-					class="fa fa-twitter"></i>
-				</a> <a href="" class="btn btn-just-icon btn-round btn-dribbble"> <i
-					class="fa fa-dribbble"></i>
-				</a> <a href="#" class="btn btn-just-icon btn-round btn-facebook"> <i
+				<a href="https://github.com/1151704" target="_blank" class="btn btn-just-icon btn-round btn-git"> <i
+					class="fa fa-git"></i>
+				</a> <a href="https://www.instagram.com/omarmontes.0/" target="_blank" class="btn btn-just-icon btn-round btn-instagram"> <i
+					class="fa fa-instagram"></i>
+				</a> <a href="https://www.facebook.com/omarmontes.0" target="_blank" class="btn btn-just-icon btn-round btn-facebook"> <i
 					class="fa fa-facebook"> </i>
 				</a>
 			</div>

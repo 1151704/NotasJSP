@@ -1,7 +1,8 @@
 const URL = getAbsolutePath();
 const COMPONENTES = [
 	{id: "component-asignaturas-admin", funcion: "listadoAsignaturas"},
-	{id: "component-asignatura-admin", funcion: "adminAsignatura"}
+	{id: "component-asignatura-admin", funcion: "adminAsignatura"},
+	{id: "component-usuario-admin", funcion: "adminUsuario"}
 ]
 
 function getAbsolutePath() {
@@ -232,6 +233,18 @@ function adminAsignatura() {
 	$.post(url, function (data) {
 		$("#"+componente.id).html(data);
 		linkAjax();
+		formAjax();
+	});
+}
+// Carga de componente con administración del usuario logeado
+function adminUsuario() {
+		
+	const componente = COMPONENTES[2];
+	
+	let url = "componentes/"+componente.id+".jsp";
+	
+	$.post(url, function (data) {
+		$("#"+componente.id).html(data);
 		formAjax();
 	});
 }

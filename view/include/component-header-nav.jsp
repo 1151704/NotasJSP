@@ -21,7 +21,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="usuario.html" class="nav-link">
+                        <a href="usuario.jsp" class="nav-link">
                             Mi cuenta
                         </a>
                     </li>
