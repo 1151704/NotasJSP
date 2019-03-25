@@ -35,17 +35,25 @@ public class AsignaturaEliminar extends HttpServlet {
 		if (usuarioActual != null) {
 			
 			Long id = Long.parseLong(request.getParameter("id"));
+			String componente = request.getParameter("type");
 			
 			Asignatura asignatura = controlador.asignaturaPorId(id);
 		
 			if (asignatura != null && asignatura.getUsuario() != null && asignatura.getUsuario().equals(usuarioActual)) {
 
 				controlador.asignaturaEliminar(id);
+				if (componente == null) {
 				out.write("{"
 						+ "\"mensaje\": \"Hecho\","
 						+ "\"execute\": {"
 						+ "\"funcion\": \"listadoAsignaturas\""
 						+ "}}");
+				} else {
+					out.write("{"
+							+ "\"mensaje\": \"Hecho\","
+							+ "\"redirect\": \"asignaturas.jsp\""
+							+"}");
+				}
 				
 			} else {				
 				response.setStatus(HttpServletResponse.SC_FORBIDDEN);

@@ -20,10 +20,10 @@
 	            <div class="col-12">
 	                <div class="card card-nav-tabs">
 	                    <h4 class="card-header card-header-info">
-	                        <a href="AsignaturaEliminar?id=<%=asignatura.getId()%>" class="btn btn-just-icon btn-sm btn-outline close link-ajax" title="Eliminar asignatura">
+	                        <a href="AsignaturaEliminar?id=<%=asignatura.getId()%>" class="btn btn-just-icon btn-sm btn-outline close link-ajax link-ajax-confirm" title="Eliminar asignatura">
 	                            <i class="material-icons">delete</i>
 	                        </a>
-	                        <a class="btn btn-just-icon btn-sm btn-outline close" title="Editar asignatura" >
+	                        <a href="asignatura.jsp?id=<%=asignatura.getId()%>" class="btn btn-just-icon btn-sm btn-outline close" title="Editar asignatura" >
 	                            <i class="material-icons">edit</i>
 	                        </a>
 	                        <%=asignatura.getNombre()%>

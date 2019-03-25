@@ -1,0 +1,29 @@
+<% session.setAttribute("paginaActual", "Asignatura | Notas App"); %>
+<%@include file="../include/validate.jsp"%>
+<!doctype html>
+<html lang="es">
+<head>
+	<jsp:include page="include/design-resources.jsp" flush="true" />
+</head>
+<body>   
+	
+    <jsp:include page="include/component-header-nav.jsp" flush="true" />
+    
+    <div class="page-header header-primary header-small" data-parallax="true"
+        style="background-image: url('assets/img/bg9.jpg');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 ml-auto mr-auto text-center">
+                    <h1 class="title">Asignatura</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="component-asignatura-admin"></div>
+    
+    <jsp:include page="include/footer.jsp" flush="true" />
+    
+	<jsp:include page="include/interaction-resources.jsp" flush="true" />
+</body>
+</html>

@@ -1294,7 +1294,6 @@ var fixScrollbar = function fixScrollbar() {
 
 
   if (document.body.scrollHeight > window.innerHeight) {
-	  console.log('padding-right');
     // add padding so the content doesn't shift after removal of scrollbar
     states.previousBodyPadding = '0px';// parseInt(window.getComputedStyle(document.body).getPropertyValue('padding-right'));
     document.body.style.paddingRight ='0px';// states.previousBodyPadding + measureScrollbar() + 'px';

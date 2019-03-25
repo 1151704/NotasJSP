@@ -1,6 +1,7 @@
 const URL = getAbsolutePath();
 const COMPONENTES = [
-	{id: "component-asignaturas-admin", funcion: "listadoAsignaturas"}
+	{id: "component-asignaturas-admin", funcion: "listadoAsignaturas"},
+	{id: "component-asignatura-admin", funcion: "adminAsignatura"}
 ]
 
 function getAbsolutePath() {
@@ -16,9 +17,9 @@ function redirect(url) {
 }
 
 $(document).ready(function() {
+	cargarComponentes();
 	linkAjax();
 	formAjax();
-	cargarComponentes();
 });
 
 function cargarComponentes() {
@@ -26,7 +27,7 @@ function cargarComponentes() {
 	for (let pagina of COMPONENTES) {
 		
 		if (document.getElementById(pagina.id)) {
-			executeFunctionByName(pagina.funcion, window);			
+			executeFunctionByName(pagina.funcion, window);		
 		}
 		
 	}
@@ -108,7 +109,27 @@ function linkAjax() {
 	$(".link-ajax").off('click');
 	$(".link-ajax").on('click', function(e) {
     
-		enviarData(this.href);  
+		if ($(this).hasClass("link-ajax-confirm")) {
+			
+			Swal.fire({
+				  title: 'Estas seguro?',
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Si',
+				  cancelButtonText: 'Cancelar',
+				}).then((result) => {
+				  if (result.value) {
+					  enviarData(this.href); 	
+				  }
+				})
+			
+		} else {
+			
+			enviarData(this.href); 			
+			
+		}
 		
 		return false;
 	});
@@ -180,13 +201,37 @@ function executeFunctionByName(functionName, context /* , args */) {
 	return context[func].apply(context, args);
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 // Carga de componente con listado de asignaturas por usuario logedado
 function listadoAsignaturas() {
 	
-	let url = "componentes/"+COMPONENTES[0].id+".jsp";
+	const componente = COMPONENTES[0];
+	
+	let url = "componentes/"+componente.id+".jsp";
 	
 	$.post(url, function (data) {
-		$("#"+COMPONENTES[0].id).html(data);
+		$("#"+componente.id).html(data);
 		linkAjax();
+	});
+}
+// Carga de componente con administración de asignatura por el parametro id de la url
+function adminAsignatura() {
+	
+	let id = getParameterByName('id');
+	
+	const componente = COMPONENTES[1];
+	
+	let url = "componentes/"+componente.id+".jsp?id="+id;
+		
+	$.post(url, function (data) {
+		$("#"+componente.id).html(data);
+		linkAjax();
+		formAjax();
 	});
 }

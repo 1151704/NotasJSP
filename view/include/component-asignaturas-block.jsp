@@ -22,7 +22,7 @@
                                     <%=asignatura.getPromedioTotal()%>
                                 </button>
                             </p>
-                            <a href="asignatura.jsp?id=<%=asignatura.getId()%>" target="_blank" class="btn btn-primary">Ver notas</a>
+                            <a href="asignatura.jsp?id=<%=asignatura.getId()%>" class="btn btn-primary">Ver notas</a>
                         </div>
                     </div>
                 </div>

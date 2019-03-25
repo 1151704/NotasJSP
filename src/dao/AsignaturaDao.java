@@ -46,6 +46,7 @@ public class AsignaturaDao implements IAsignaturaDao {
 				asignatura.setId(rs.getLong("id"));
 				asignatura.setNombre(rs.getString("nombre"));
 				asignatura.setCreditos(rs.getInt("creditos"));
+				asignatura.setProfesor(rs.getString("profesor"));
 				asignatura.setPromedioTotal(rs.getDouble("promedioTotal"));
 				asignatura.setUsuario(new Usuario(rs.getLong("idUsuario")));
 				asignatura.setNotas(notasDao.findNotaByAsignatura(asignatura.getId()));
@@ -215,6 +216,7 @@ public class AsignaturaDao implements IAsignaturaDao {
 				asignatura.setId(rs.getLong("id"));
 				asignatura.setNombre(rs.getString("nombre"));
 				asignatura.setCreditos(rs.getInt("creditos"));
+				asignatura.setProfesor(rs.getString("profesor"));
 				asignatura.setPromedioTotal(rs.getDouble("promedioTotal"));
 				asignatura.setUsuario(new Usuario(rs.getLong("idUsuario")));
 				asignatura.setNotas(notasDao.findNotaByAsignatura(asignatura.getId()));
