@@ -39,7 +39,7 @@ DROP TRIGGER IF EXISTS asignaturaNota_update $$
 CREATE TRIGGER asignaturaNota_update AFTER UPDATE ON asignaturaNota
 FOR EACH ROW BEGIN
 
-	set @newTotal = (select sum(nota * porcentaje * 0.01) as total from asignaturaNota where old.idAsignatura);
+	set @newTotal = (select sum(nota * porcentaje * 0.01) as total from asignaturaNota where idAsignatura = old.idAsignatura);
 	
 	set @oldTotal = (select promedioTotal from asignatura WHERE id = old.idAsignatura);
 	
