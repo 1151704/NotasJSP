@@ -1,4 +1,4 @@
-package servicio;
+package facade;
 
 import dao.GenericDao;
 import dto.Usuario;

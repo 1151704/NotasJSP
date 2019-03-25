@@ -1,8 +1,11 @@
 package negocio;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import dto.Asignatura;
+import dto.AsignaturaNota;
 import dto.Usuario;
 import facade.INegocio;
 import factory.Factory;
@@ -94,11 +97,85 @@ public class Negocio implements INegocio {
 		try {
 
 			factory.getUsuario().delete(o);
-			;
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public Asignatura asignaturaPorId(Long id) {
+
+		try {
+
+			return factory.getAsignatura().find(id);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Asignatura> asignaturaPorUsuario(Long idUsuario) {
+		try {
+
+			return factory.getAsignatura().findByUsuario(idUsuario);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return new ArrayList<Asignatura>();
+	}
+
+	@Override
+	public void asignaturaInsert(Asignatura asignatura) {
+
+		try {
+
+			factory.getAsignatura().insert(asignatura);;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void asignaturaUpdate(Asignatura asignatura) {
+
+		try {
+
+			factory.getAsignatura().update(asignatura);;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void asignaturaDelete(Asignatura asignatura) {
+
+		try {
+
+			factory.getAsignatura().delete(asignatura);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public void asignaturaNotaUpdate(AsignaturaNota asignaturaNota) {
+		try {
+
+			factory.getAsignaturaNota().update(asignaturaNota);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -1,13 +1,14 @@
 package dao;
 
 import dto.Usuario;
-import servicio.IUsuarioDao;
+import facade.IUsuarioDao;
 import conexion.Conexion;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -85,12 +86,73 @@ public class UsuarioDao implements IUsuarioDao {
 
 	@Override
 	public List<Usuario> list() {
-		return null;
+		Connection cnn = null;
+		PreparedStatement ps;
+		ResultSet rs = null;
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		try {
+			cnn = Conexion.getCnn();
+
+			ps = cnn.prepareStatement("SELECT u.* FROM usuario u;");
+
+			rs = ps.executeQuery();
+
+			Usuario usuario;
+
+			while (rs.next()) {
+				usuario = new Usuario();
+
+				usuario.setId(rs.getLong("id"));
+				usuario.setNombre(rs.getString("nombre"));
+				usuario.setApellido(rs.getString("apellido"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setTelefono(rs.getString("telefono"));
+				usuario.setUsuario(rs.getString("usuario"));
+
+				usuarios.add(usuario);
+
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			Conexion.close();
+		}
+
+		return usuarios;
 	}
 
 	@Override
 	public Usuario find(Long id) {
-		return null;
+		Connection cnn = null;
+		PreparedStatement ps;
+		ResultSet rs = null;
+		Usuario usuario = null;
+		try {
+			cnn = Conexion.getCnn();
+
+			ps = cnn.prepareStatement("SELECT u.* FROM usuario u where u.id=?;");
+
+			ps.setLong(1, id);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				usuario = new Usuario();
+
+				usuario.setId(rs.getLong("id"));
+				usuario.setNombre(rs.getString("nombre"));
+				usuario.setApellido(rs.getString("apellido"));
+				usuario.setEmail(rs.getString("email"));
+				usuario.setTelefono(rs.getString("telefono"));
+				usuario.setUsuario(rs.getString("usuario"));
+
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			Conexion.close();
+		}
+		return usuario;
 	}
 
 	@Override
@@ -125,10 +187,54 @@ public class UsuarioDao implements IUsuarioDao {
 	@Override
 	public void update(Usuario o) {
 
+		PreparedStatement ps;
+		Connection cnn = null;
+		try {
+
+			cnn = Conexion.getCnn();
+
+			ps = cnn.prepareStatement(
+					"UPDATE usuario SET nombre = ?, apellido = ?, telefono =? , email = ?, password =? where id = ?");
+
+			ps.setString(1, o.getNombre());
+			ps.setString(2, o.getApellido());
+			ps.setString(3, o.getTelefono());
+			ps.setString(4, o.getEmail());
+			ps.setString(5, o.getPassword());
+			ps.setLong(6, o.getId());
+
+			if (ps.executeUpdate() > 0) {
+				// return (true);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			Conexion.close();
+		}
+
 	}
 
 	@Override
 	public void delete(Usuario o) {
+
+		PreparedStatement ps;
+		Connection cnn = null;
+		try {
+
+			cnn = Conexion.getCnn();
+
+			ps = cnn.prepareStatement("DELETE from usuario where id = ?");
+
+			ps.setLong(1, o.getId());
+
+			if (ps.executeUpdate() > 0) {
+				// return (true);
+			}
+		} catch (SQLException ex) {
+			Logger.getLogger(UsuarioDao.class.getName()).log(Level.SEVERE, null, ex);
+		} finally {
+			Conexion.close();
+		}
 
 	}
 
